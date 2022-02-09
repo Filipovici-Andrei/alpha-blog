@@ -1,4 +1,12 @@
-<h1>Alpha-blog about page</h1>
-
-<%= link_to 'Articles listing', articles_path %> |
-<%= link_to 'Home page', root_path %>
+<div class="container" id="home-container">
+  <div class="rounded-3 text-white text-lg-center" id="home-background">
+    <h1 style="padding: 2% 0% 0% 0%;" class="display-4">Alpha Blog's About Page</h1>
+    <p style="padding: 5% 10% 10% 10%;" class="lead">Or, keep it light and add a border for some added definition to the
+      boundaries of your content. Be
+      sure to look
+      under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for
+      equal-height.&nbsp &nbsp space</p>
+    <%= link_to "Home", root_path, method: :get, class: "btn btn-success btn-lg" %>
+    <p style="padding: 5% 8% 5% 10%;"></p>
+  </div>
+</div>

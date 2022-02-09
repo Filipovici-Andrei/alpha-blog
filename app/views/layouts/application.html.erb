@@ -7,11 +7,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'layouts/notice' %>
-    <%= yield %>
+  <body class="d-flex flex-column">
+    <%= render 'layouts/navbar' %>
+    <div id="page-content">
+      <%= render 'layouts/notice' %>
+      <%= yield %>
+    </div>
+  <%= render 'layouts/footer' %>
   </body>
 </html>
