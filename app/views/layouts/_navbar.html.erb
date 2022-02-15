@@ -14,7 +14,9 @@
             Articles
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Create new article", new_article_path, class: "dropdown-item" %>
+            <% if logged_in? %>
+              <%= link_to "Create new article", new_article_path, class: "dropdown-item" %>
+            <% end %>
             <%= link_to "View articles", articles_path, class: "dropdown-item" %>
             <% if @article && @article.id %>
               <div class="dropdown-divider"></div>
@@ -22,14 +24,33 @@
             <% end %>
           </div>
         </li>
-        <li class="nav-item">
-          <%= link_to "Create new articles", new_article_path, class: "nav-link" %>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= "(Admin) " if current_user.admin? %>Profile [<%= current_user.username %>]
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "View profile", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Edit profile", edit_user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Delete profile", user_path(current_user), method: :delete, class: "dropdown-item text-danger", data: {confirm: 'Are you sure?'} %>
+            </div>
+          <li class="nav-item">
+            <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in", login_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", signup_path, class: "nav-link" %>
+          </li>
+          </ul>
+        <% end %>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        </div>
   </div>
 </nav>
