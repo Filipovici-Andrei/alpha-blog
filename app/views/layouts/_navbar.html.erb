@@ -24,6 +24,17 @@
             <% end %>
           </div>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if logged_in? && current_user.admin? %>
+              <%= link_to "Create new category", new_category_path, class: "dropdown-item" %>
+            <% end %>
+            <%= link_to "View categories", categories_path, class: "dropdown-item" %>
+          </div>
+        </li>
         <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,7 +43,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "View profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Edit profile", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Delete profile", user_path(current_user), method: :delete, class: "dropdown-item text-danger", data: {confirm: 'Are you sure?'} %>
+              <%= link_to "Delete profile", user_path(current_user), method: :delete, class: "dropdown-item text-danger", data: { confirm: 'Are you sure?' } %>
             </div>
           <li class="nav-item">
             <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
